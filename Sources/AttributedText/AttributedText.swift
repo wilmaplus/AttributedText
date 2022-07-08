@@ -6,15 +6,18 @@ public struct AttributedText: View {
 
   private let attributedText: NSAttributedString
   private let onOpenLink: ((URL) -> Void)?
+  private let flexibleWidth: Bool
 
   /// Creates an attributed text view.
   /// - Parameters:
   ///   - attributedText: An attributed string to display.
   ///   - onOpenLink: The action to perform when the user opens a link in the text. When not specified,
   ///                 the  view opens the links using the `OpenURLAction` from the environment.
-  public init(_ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil) {
+  ///   - flexibleWidth: Flexible Width
+  public init(_ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil, flexibleWidth: Bool = false) {
     self.attributedText = attributedText
     self.onOpenLink = onOpenLink
+        self.flexibleWidth = flexibleWidth
   }
 
   /// Creates an attributed text view.
@@ -22,8 +25,9 @@ public struct AttributedText: View {
   ///   - attributedText: A closure that creates the attributed string to display.
   ///   - onOpenLink: The action to perform when the user opens a link in the text. When not specified,
   ///                 the  view opens the links using the `OpenURLAction` from the environment.
-  public init(attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil) {
-    self.init(attributedText(), onOpenLink: onOpenLink)
+  ///   - flexibleWidth: Flexible Width
+    public init(attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil, flexibleWidth: Bool = false) {
+    self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth)
   }
 
   public var body: some View {
@@ -37,6 +41,7 @@ public struct AttributedText: View {
     }
     .frame(
       idealWidth: textSizeViewModel.textSize?.width,
+      maxWidth: flexibleWidth ? textSizeViewModel.textSize?.width : CGFloat(MAXFLOAT),
       idealHeight: textSizeViewModel.textSize?.height
     )
     .fixedSize(horizontal: false, vertical: true)
