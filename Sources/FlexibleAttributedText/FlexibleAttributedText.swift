@@ -14,10 +14,13 @@ public struct FlexibleAttributedText: View {
   ///   - onOpenLink: The action to perform when the user opens a link in the text. When not specified,
   ///                 the  view opens the links using the `OpenURLAction` from the environment.
   ///   - flexibleWidth: Flexible Width
-  public init(_ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil, flexibleWidth: Bool = false) {
+  public init(
+    _ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
+    flexibleWidth: Bool = false
+  ) {
     self.attributedText = attributedText
     self.onOpenLink = onOpenLink
-        self.flexibleWidth = flexibleWidth
+    self.flexibleWidth = flexibleWidth
   }
 
   /// Creates an attributed text view.
@@ -26,7 +29,10 @@ public struct FlexibleAttributedText: View {
   ///   - onOpenLink: The action to perform when the user opens a link in the text. When not specified,
   ///                 the  view opens the links using the `OpenURLAction` from the environment.
   ///   - flexibleWidth: Flexible Width
-    public init(attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil, flexibleWidth: Bool = false) {
+  public init(
+    attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
+    flexibleWidth: Bool = false
+  ) {
     self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth)
   }
 

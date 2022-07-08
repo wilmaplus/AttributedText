@@ -13,7 +13,7 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
-        
+
       uiView.openLink = onOpenLink ?? { context.environment.openURL($0) }
       textSizeViewModel.didUpdateTextView(uiView)
     }
@@ -33,9 +33,10 @@
       override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
 
-          let fixedWidth = frame.size.width
-          let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-          self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        let fixedWidth = frame.size.width
+        let newSize = self.sizeThatFits(
+          CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         self.backgroundColor = .clear
         self.textContainerInset = .zero
         self.isEditable = false
@@ -51,14 +52,13 @@
       required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
       }
-        
-    
 
       override var intrinsicContentSize: CGSize {
         guard maxLayoutWidth > 0 else {
-            let fixedWidth = frame.size.width
-            let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+          let fixedWidth = frame.size.width
+          let newSize = self.sizeThatFits(
+            CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+          return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         }
 
         return sizeThatFits(CGSize(width: maxLayoutWidth, height: .greatestFiniteMagnitude))

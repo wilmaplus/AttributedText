@@ -42,7 +42,8 @@
 
       override var intrinsicContentSize: CGSize {
         guard maxLayoutWidth > 0 else {
-            return sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+          return sizeThatFits(
+            CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         }
 
         return sizeThatFits(CGSize(width: maxLayoutWidth, height: .greatestFiniteMagnitude))
