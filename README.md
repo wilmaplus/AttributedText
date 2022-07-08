@@ -11,12 +11,12 @@ FlexibleAttributedText is a Swift µpackage that provides `NSAttributedString` r
 
 ## Usage
 ```swift
-import AttributedText
+import FlexibleAttributedText
 import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    AttributedText {
+    FlexibleAttributedText {
       let result = NSMutableAttributedString(
         string: """
           After the Big Bang
@@ -64,14 +64,14 @@ struct ContentView: View {
 }
 ```
 
-An `AttributedText` view takes all the available width and adjusts its height to fit the contents.
+An `FlexibleAttributedText` view takes all the available width and adjusts its height to fit the contents.
 
 To use dynamic width, pass down an argument `flexibleWidth` with value `true` to enable flexible width.
 
 To change the text alignment or line break mode, you need to add a `.paragraphStyle` attribute to the attributed string.
 
 ## Installation
-You can add AttributedText to an Xcode project by adding it as a package dependency.
+You can add FlexibleAttributedText to an Xcode project by adding it as a package dependency.
 1. From the **File** menu, select **Swift Packages › Add Package Dependency…**
-1. Enter `https://github.com/gonzalezreal/AttributedText` into the package repository URL text field
-1. Link **AttributedText** to your application target
+1. Enter `https://github.com/wilmaplus/FlexibleAttributedText` into the package repository URL text field
+1. Link **FlexibleAttributedText** to your application target
