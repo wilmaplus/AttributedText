@@ -2,6 +2,7 @@
 
 FlexibleAttributedText is a Swift µpackage that provides `NSAttributedString` rendering in SwiftUI by wrapping either an `NSTextView` or a `UITextView` depending on the platform, which supports flexible views.
 
+
 ## Supported Platforms
 
 * macOS 11.0+
