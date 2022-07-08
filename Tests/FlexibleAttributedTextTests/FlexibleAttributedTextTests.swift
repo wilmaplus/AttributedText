@@ -3,13 +3,13 @@
   import SwiftUI
   import XCTest
 
-  import AttributedText
+  import FlexibleAttributedText
 
-  final class AttributedTextTests: XCTestCase {
+  final class FlexibleAttributedTextTests: XCTestCase {
     struct TestView: View {
         var flexible: Bool = false
       var body: some View {
-          AttributedText(attributedText: {
+          FlexibleAttributedText(attributedText: {
           let result = NSMutableAttributedString(
             string: """
               Sherlock Holmes

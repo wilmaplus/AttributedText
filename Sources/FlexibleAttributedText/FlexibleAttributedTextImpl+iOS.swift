@@ -1,7 +1,7 @@
 #if os(iOS)
   import SwiftUI
 
-  extension AttributedTextImpl: UIViewRepresentable {
+  extension FlexibleAttributedTextImpl: UIViewRepresentable {
     func makeUIView(context: Context) -> TextView {
       TextView()
     }
@@ -19,7 +19,7 @@
     }
   }
 
-  extension AttributedTextImpl {
+  extension FlexibleAttributedTextImpl {
     final class TextView: UITextView {
       var maxLayoutWidth: CGFloat = 0 {
         didSet {

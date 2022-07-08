@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A view that displays styled attributed text.
-public struct AttributedText: View {
+public struct FlexibleAttributedText: View {
   @StateObject private var textSizeViewModel = TextSizeViewModel()
 
   private let attributedText: NSAttributedString
@@ -32,7 +32,7 @@ public struct AttributedText: View {
 
   public var body: some View {
     GeometryReader { geometry in
-      AttributedTextImpl(
+      FlexibleAttributedTextImpl(
         attributedText: attributedText,
         maxLayoutWidth: geometry.maxWidth,
         textSizeViewModel: textSizeViewModel,

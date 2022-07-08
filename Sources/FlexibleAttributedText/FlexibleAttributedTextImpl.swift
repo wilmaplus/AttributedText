@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AttributedTextImpl {
+struct FlexibleAttributedTextImpl {
   var attributedText: NSAttributedString
   var maxLayoutWidth: CGFloat
   var textSizeViewModel: TextSizeViewModel

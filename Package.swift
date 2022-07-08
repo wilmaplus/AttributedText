@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "AttributedText",
+  name: "FlexibleAttributedText",
   platforms: [
     .macOS(.v11),
     .iOS(.v14),
@@ -12,8 +12,8 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "AttributedText",
-      targets: ["AttributedText"]
+      name: "FlexibleAttributedText",
+      targets: ["FlexibleAttributedText"]
     )
   ],
   dependencies: [
@@ -25,12 +25,12 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "AttributedText",
+      name: "FlexibleAttributedText",
       dependencies: []
     ),
     .testTarget(
-      name: "AttributedTextTests",
-      dependencies: ["AttributedText", "SnapshotTesting"],
+      name: "FlexibleAttributedTextTests",
+      dependencies: ["FlexibleAttributedText", "SnapshotTesting"],
       exclude: ["__Snapshots__"]
     ),
   ]
