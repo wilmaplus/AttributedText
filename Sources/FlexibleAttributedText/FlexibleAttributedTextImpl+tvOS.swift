@@ -10,7 +10,6 @@
       uiView.isScrollEnabled = false
       uiView.textContainer.lineFragmentPadding = 0
       uiView.delegate = context.coordinator
-
       return uiView
     }
 
@@ -23,6 +22,7 @@
         truncationMode: context.environment.truncationMode
       )
       context.coordinator.openLink = onOpenLink ?? { context.environment.openURL($0) }
+        uiView.invalidateIntrinsicContentSize()
       textSizeViewModel.didUpdateTextView(uiView)
     }
 
