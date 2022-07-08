@@ -13,8 +13,9 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
-        
       uiView.openLink = onOpenLink ?? { context.environment.openURL($0) }
+      uiView.invalidateIntrinsicContentSize()
+      uiView.updateFrame()
       textSizeViewModel.didUpdateTextView(uiView)
     }
   }
@@ -33,25 +34,29 @@
       override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
 
-          let fixedWidth = frame.size.width
-          let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-          self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+          
         self.backgroundColor = .clear
         self.textContainerInset = .zero
         self.isEditable = false
         self.isSelectable = false
         self.isScrollEnabled = false
         self.textContainer.lineFragmentPadding = 0
-
+        updateFrame()
         self.addGestureRecognizer(
           UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         )
       }
+        
 
       required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
       }
         
+        func updateFrame() {
+            let fixedWidth = frame.size.width
+            let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+            self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        }
     
 
       override var intrinsicContentSize: CGSize {
