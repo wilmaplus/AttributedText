@@ -26,7 +26,7 @@
         truncationMode: context.environment.truncationMode
       )
       context.coordinator.openLink = onOpenLink ?? { context.environment.openURL($0) }
-        nsView.invalidateIntrinsicContentSize()
+      nsView.invalidateIntrinsicContentSize()
       textSizeViewModel.didUpdateTextView(nsView)
     }
 
