@@ -50,7 +50,7 @@
           let textContainer = self.textContainer,
           let layoutManager = self.layoutManager
         else {
-          return super.intrinsicContentSize
+            return sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         }
 
         layoutManager.ensureLayout(for: textContainer)

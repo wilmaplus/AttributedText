@@ -9,7 +9,6 @@
     func updateUIView(_ uiView: TextView, context: Context) {
       uiView.attributedText = attributedText
       uiView.maxLayoutWidth = maxLayoutWidth
-
       uiView.textContainer.maximumNumberOfLines = context.environment.lineLimit ?? 0
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
@@ -51,7 +50,7 @@
 
       override var intrinsicContentSize: CGSize {
         guard maxLayoutWidth > 0 else {
-          return super.intrinsicContentSize
+            return sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         }
 
         return sizeThatFits(CGSize(width: maxLayoutWidth, height: .greatestFiniteMagnitude))
