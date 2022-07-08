@@ -12,7 +12,7 @@
       nsView.textContainer?.lineFragmentPadding = 0
       // we are setting the container's width manually
       nsView.textContainer?.widthTracksTextView = false
-        nsView.delegate = context.coordinator
+      nsView.delegate = context.coordinator
 
       return nsView
     }
@@ -34,45 +34,46 @@
     }
   }
 
-extension FlexibleAttributedTextImpl {
+  extension FlexibleAttributedTextImpl {
     final class TextView: NSTextView {
-        var maxLayoutWidth: CGFloat {
-            get { textContainer?.containerSize.width ?? 0 }
-            set {
-                guard textContainer?.containerSize.width != newValue else { return }
-                textContainer?.containerSize.width = newValue
-                invalidateIntrinsicContentSize()
-            }
+      var maxLayoutWidth: CGFloat {
+        get { textContainer?.containerSize.width ?? 0 }
+        set {
+          guard textContainer?.containerSize.width != newValue else { return }
+          textContainer?.containerSize.width = newValue
+          invalidateIntrinsicContentSize()
         }
-        
-        override var intrinsicContentSize: CGSize {
-            guard maxLayoutWidth > 0,
-                  let textContainer = self.textContainer,
-                  let layoutManager = self.layoutManager
-            else {
-                let fixedWidth = frame.size.width
-                let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-                return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-            }
-            
-            layoutManager.ensureLayout(for: textContainer)
-            return layoutManager.usedRect(for: textContainer).size
+      }
+
+      override var intrinsicContentSize: CGSize {
+        guard maxLayoutWidth > 0,
+          let textContainer = self.textContainer,
+          let layoutManager = self.layoutManager
+        else {
+          let fixedWidth = frame.size.width
+          let newSize = self.sizeThatFits(
+            CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+          return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         }
-        
-        final class Coordinator: NSObject, NSTextViewDelegate {
-            var openLink: ((URL) -> Void)?
-            
-            func textView(_: NSTextView, clickedOnLink link: Any, at _: Int) -> Bool {
-                guard let openLink = self.openLink,
-                      let url = (link as? URL) ?? (link as? String).flatMap(URL.init(string:))
-                else {
-                    return false
-                }
-                
-                openLink(url)
-                return true
-            }
+
+        layoutManager.ensureLayout(for: textContainer)
+        return layoutManager.usedRect(for: textContainer).size
+      }
+
+      final class Coordinator: NSObject, NSTextViewDelegate {
+        var openLink: ((URL) -> Void)?
+
+        func textView(_: NSTextView, clickedOnLink link: Any, at _: Int) -> Bool {
+          guard let openLink = self.openLink,
+            let url = (link as? URL) ?? (link as? String).flatMap(URL.init(string:))
+          else {
+            return false
+          }
+
+          openLink(url)
+          return true
         }
+      }
     }
-}
+  }
 #endif

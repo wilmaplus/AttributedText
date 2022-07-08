@@ -13,6 +13,7 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
+
       uiView.openLink = onOpenLink ?? { context.environment.openURL($0) }
       uiView.invalidateIntrinsicContentSize()
       uiView.updateFrame()
@@ -61,9 +62,10 @@
 
       override var intrinsicContentSize: CGSize {
         guard maxLayoutWidth > 0 else {
-            let fixedWidth = frame.size.width
-            let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+          let fixedWidth = frame.size.width
+          let newSize = self.sizeThatFits(
+            CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+          return CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         }
 
         return sizeThatFits(CGSize(width: maxLayoutWidth, height: .greatestFiniteMagnitude))
