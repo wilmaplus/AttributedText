@@ -67,16 +67,6 @@
         self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
       }
 
-        func updateFrame() {
-            if let color = linkColor {
-              linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
-            }
-            let fixedWidth = frame.size.width
-            let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        }
-
-
       override var intrinsicContentSize: CGSize {
         guard maxLayoutWidth > 0 else {
           let fixedWidth = frame.size.width
