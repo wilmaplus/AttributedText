@@ -1,6 +1,5 @@
 #if os(tvOS)
   import SwiftUI
-  import UIKit
 
   extension FlexibleAttributedTextImpl: UIViewRepresentable {
     func makeUIView(context: Context) -> TextView {

@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 /// A view that displays styled attributed text.
 public struct FlexibleAttributedText: View {
@@ -7,7 +6,7 @@ public struct FlexibleAttributedText: View {
 
   private let attributedText: NSAttributedString
   private let onOpenLink: ((URL) -> Void)?
-  private let linkColor: UIColor?
+  private let linkColor: Color?
   private let selectable: Bool
   private let flexibleWidth: Bool
 
@@ -19,7 +18,7 @@ public struct FlexibleAttributedText: View {
   ///   - flexibleWidth: Flexible Width
   public init(
     _ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
-    flexibleWidth: Bool = false, linkColor: UIColor? = nil, selectable: Bool = false
+    flexibleWidth: Bool = false, linkColor: Color? = nil, selectable: Bool = false
   ) {
     self.attributedText = attributedText
     self.onOpenLink = onOpenLink
@@ -38,7 +37,7 @@ public struct FlexibleAttributedText: View {
     attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
     flexibleWidth: Bool = false,
     selectable: Bool = false,
-    linkColor: UIColor? = nil
+    linkColor: Color? = nil
   ) {
     self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth, linkColor: linkColor)
   }
