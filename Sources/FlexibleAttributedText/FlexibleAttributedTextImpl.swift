@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct FlexibleAttributedTextImpl {
   var attributedText: NSAttributedString
