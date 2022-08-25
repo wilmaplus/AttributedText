@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// A view that displays styled attributed text.
 public struct FlexibleAttributedText: View {
