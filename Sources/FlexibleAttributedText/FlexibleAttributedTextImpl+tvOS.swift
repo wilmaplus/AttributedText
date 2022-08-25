@@ -25,7 +25,7 @@
         uiView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
       }
       context.coordinator.openLink = onOpenLink ?? { context.environment.openURL($0) }
-        uiView.invalidateIntrinsicContentSize()
+      uiView.invalidateIntrinsicContentSize()
       textSizeViewModel.didUpdateTextView(uiView)
     }
 
