@@ -13,7 +13,7 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
-        uiView.isSelectable = contentIsSelectable
+      uiView.isSelectable = contentIsSelectable
       if let color = linkColor {
         uiView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
       }
@@ -37,7 +37,6 @@
 
       var linkColor: UIColor?
 
-
       override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
 
@@ -59,7 +58,7 @@
 
       func updateFrame() {
         if let color = linkColor {
-            linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+          linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
         }
         let fixedWidth = frame.size.width
         let newSize = self.sizeThatFits(

@@ -23,7 +23,7 @@ public struct FlexibleAttributedText: View {
     self.attributedText = attributedText
     self.onOpenLink = onOpenLink
     self.linkColor = linkColor
-      self.selectable = selectable
+    self.selectable = selectable
     self.flexibleWidth = flexibleWidth
   }
 
@@ -39,7 +39,8 @@ public struct FlexibleAttributedText: View {
     selectable: Bool = false,
     linkColor: Color? = nil
   ) {
-    self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth, linkColor: linkColor)
+    self.init(
+      attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth, linkColor: linkColor)
   }
 
   public var body: some View {
