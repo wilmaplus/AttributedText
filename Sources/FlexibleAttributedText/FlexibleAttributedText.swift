@@ -6,6 +6,8 @@ public struct FlexibleAttributedText: View {
 
   private let attributedText: NSAttributedString
   private let onOpenLink: ((URL) -> Void)?
+  private let linkColor: UIColor?
+  private let selectable: Bool
   private let flexibleWidth: Bool
 
   /// Creates an attributed text view.
@@ -16,10 +18,12 @@ public struct FlexibleAttributedText: View {
   ///   - flexibleWidth: Flexible Width
   public init(
     _ attributedText: NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
-    flexibleWidth: Bool = false
+    flexibleWidth: Bool = false, linkColor: UIColor? = nil, selectable: Bool = false
   ) {
     self.attributedText = attributedText
     self.onOpenLink = onOpenLink
+    self.linkColor = linkColor
+      self.selectable = selectable
     self.flexibleWidth = flexibleWidth
   }
 
@@ -31,9 +35,11 @@ public struct FlexibleAttributedText: View {
   ///   - flexibleWidth: Flexible Width
   public init(
     attributedText: () -> NSAttributedString, onOpenLink: ((URL) -> Void)? = nil,
-    flexibleWidth: Bool = false
+    flexibleWidth: Bool = false,
+    selectable: Bool = false,
+    linkColor: UIColor? = nil
   ) {
-    self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth)
+    self.init(attributedText(), onOpenLink: onOpenLink, flexibleWidth: flexibleWidth, linkColor: linkColor)
   }
 
   public var body: some View {
@@ -42,7 +48,9 @@ public struct FlexibleAttributedText: View {
         attributedText: attributedText,
         maxLayoutWidth: geometry.maxWidth,
         textSizeViewModel: textSizeViewModel,
-        onOpenLink: onOpenLink
+        onOpenLink: onOpenLink,
+        linkColor: linkColor,
+        contentIsSelectable: selectable
       )
     }
     .frame(

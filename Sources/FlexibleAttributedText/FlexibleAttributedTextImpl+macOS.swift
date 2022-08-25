@@ -8,6 +8,7 @@
       nsView.drawsBackground = false
       nsView.textContainerInset = .zero
       nsView.isEditable = false
+      nsView.isSelectable = contentIsSelectable
       nsView.isRichText = false
       nsView.textContainer?.lineFragmentPadding = 0
       // we are setting the container's width manually
@@ -20,7 +21,9 @@
     func updateNSView(_ nsView: TextView, context: Context) {
       nsView.textStorage?.setAttributedString(attributedText)
       nsView.maxLayoutWidth = maxLayoutWidth
-
+      if let color = linkColor {
+        nsView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+      }
       nsView.textContainer?.maximumNumberOfLines = context.environment.lineLimit ?? 0
       nsView.textContainer?.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode

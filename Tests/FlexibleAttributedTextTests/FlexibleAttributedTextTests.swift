@@ -8,6 +8,7 @@
   final class FlexibleAttributedTextTests: XCTestCase {
     struct TestView: View {
       var flexible: Bool = false
+        var showLink: Bool = false
       var body: some View {
         FlexibleAttributedText(
           attributedText: {
@@ -15,17 +16,23 @@
               string: """
                 Sherlock Holmes
                 I had called upon my friend, Mr. Sherlock Holmes.
-                """
+                """ + (showLink ? "\nLink" : "")
             )
 
-            result.addAttributes(
-              [.font: UIFont.preferredFont(forTextStyle: .title2)],
-              range: NSRange(location: 0, length: 15)
-            )
+              result.addAttributes(
+                [.font: UIFont.preferredFont(forTextStyle: .title2)],
+                range: NSRange(location: 0, length: 15)
+              )
             result.addAttributes(
               [.font: UIFont.preferredFont(forTextStyle: .body)],
               range: NSRange(location: 15, length: 49)
             )
+              if showLink {
+                  result.addAttributes(
+                      [.link: NSString("https://google.com")],
+                      range: NSRange(location: 0, length: 15)
+                  )
+              }
             return result
           }, onOpenLink: nil, flexibleWidth: flexible
         )
@@ -56,6 +63,12 @@
       assertSnapshot(
         matching: view, as: .image(precision: precision, layout: layout), named: platformName)
     }
+      
+      func testLink() {
+          let view = TestView(showLink: true)
+        assertSnapshot(
+          matching: view, as: .image(precision: precision, layout: layout), named: platformName)
+      }
 
     func testTruncationMode() {
       let view = TestView()

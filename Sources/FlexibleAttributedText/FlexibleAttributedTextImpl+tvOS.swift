@@ -21,6 +21,9 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
+      if let color = linkColor {
+        uiView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+      }
       context.coordinator.openLink = onOpenLink ?? { context.environment.openURL($0) }
         uiView.invalidateIntrinsicContentSize()
       textSizeViewModel.didUpdateTextView(uiView)

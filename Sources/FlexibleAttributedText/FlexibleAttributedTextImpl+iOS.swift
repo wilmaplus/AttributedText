@@ -13,7 +13,10 @@
       uiView.textContainer.lineBreakMode = NSLineBreakMode(
         truncationMode: context.environment.truncationMode
       )
-
+        uiView.isSelectable = contentIsSelectable
+      if let color = linkColor {
+        uiView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+      }
       uiView.openLink = onOpenLink ?? { context.environment.openURL($0) }
       uiView.invalidateIntrinsicContentSize()
       uiView.updateFrame()
@@ -31,11 +34,12 @@
       }
 
       var openLink: ((URL) -> Void)?
+        
+      var linkColor: UIColor?
+        
 
       override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-
-          
         self.backgroundColor = .clear
         self.textContainerInset = .zero
         self.isEditable = false
@@ -54,6 +58,9 @@
       }
         
         func updateFrame() {
+            if let color = linkColor {
+              linkTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+            }
             let fixedWidth = frame.size.width
             let newSize = self.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
             self.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
